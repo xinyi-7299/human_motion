@@ -12,22 +12,22 @@ api_url = "http://127.0.0.1:8000/api/quertspeed"
 
 
 # Load JSON data from files
-with open('../data/bone_0.json', 'r') as file:
+with open('bone_0.json', 'r') as file:
     data_p0 = file.read()
-with open('../data/bone_1.json', 'r') as file:
+with open('bone_1.json', 'r') as file:
     data_p1 = file.read()
-with open('../data/bone_2.json', 'r') as file:
+with open('bone_2.json', 'r') as file:
     data_p2 = file.read()
-with open('../data/bone_3.json', 'r') as file:
+with open('bone_3.json', 'r') as file:
     data_p3 = file.read()
-with open('../data/bone_4.json', 'r') as file:
+with open('bone_4.json', 'r') as file:
     data_p4 = file.read()
-with open('../data/bone_5.json', 'r') as file:
+with open('bone_5.json', 'r') as file:
     data_p5 = file.read()
-with open('../data/bone_6.json', 'r') as file:
+with open('bone_6.json', 'r') as file:
     data_p6 = file.read()
 
-with open('../data/athlete.json', 'r') as file:
+with open('athlete.json', 'r') as file:
     athlete_data = json.load(file)
 
 # with open('../data/girl_3.json', 'r') as file:
