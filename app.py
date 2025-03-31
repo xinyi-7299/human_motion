@@ -8,26 +8,36 @@ import random
 import os
 
 
-api_url = "http://127.0.0.1:8000/api/quertspeed"
+# api_url = "http://127.0.0.1:8000/api/quertspeed"
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+print(BASE_DIR)
+data_path_0 = os.path.join(BASE_DIR, "data", "bone_0.json")
+data_path_1 = os.path.join(BASE_DIR, "data", "bone_1.json")
+data_path_2 = os.path.join(BASE_DIR, "data", "bone_2.json")
+data_path_3 = os.path.join(BASE_DIR, "data", "bone_3.json")
+data_path_4 = os.path.join(BASE_DIR, "data", "bone_4.json")
+data_path_5 = os.path.join(BASE_DIR, "data", "bone_5.json")
+data_path_6 = os.path.join(BASE_DIR, "data", "bone_6.json")
+data_athlete = os.path.join(BASE_DIR, "data", "athlete.json")
 
 # Load JSON data from files
-with open('bone_0.json', 'r') as file:
+with open(data_path_0, 'r') as file:
     data_p0 = file.read()
-with open('bone_1.json', 'r') as file:
+with open(data_path_1, 'r') as file:
     data_p1 = file.read()
-with open('bone_2.json', 'r') as file:
+with open(data_path_2, 'r') as file:
     data_p2 = file.read()
-with open('bone_3.json', 'r') as file:
+with open(data_path_3, 'r') as file:
     data_p3 = file.read()
-with open('bone_4.json', 'r') as file:
+with open(data_path_4, 'r') as file:
     data_p4 = file.read()
-with open('bone_5.json', 'r') as file:
+with open(data_path_5, 'r') as file:
     data_p5 = file.read()
-with open('bone_6.json', 'r') as file:
+with open(data_path_6, 'r') as file:
     data_p6 = file.read()
 
-with open('athlete.json', 'r') as file:
+with open(data_athlete, 'r') as file:
     athlete_data = json.load(file)
 
 # with open('../data/girl_3.json', 'r') as file:
@@ -61,23 +71,14 @@ for n in range(0, 7):
 
     # Loop through each time step to create lines
     for t in range(time_steps):
-        x_t = [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + \
-            [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_3] + \
-            [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + \
-            [None] + [coordinates[t]['x'][i] if coordinates[t]['x']
-                      [i] != 0.0 else None for i in connection_order_5]
+        x_t = [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x']
+                                                                                                                                                                                                                                     [i] != 0.0 else None for i in connection_order_3] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_5]
 
-        y_t = [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + \
-            [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_3] + \
-            [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + \
-            [None] + [coordinates[t]['y'][i] if coordinates[t]['x']
-                      [i] != 0.0 else None for i in connection_order_5]
+        y_t = [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x']
+                                                                                                                                                                                                                                     [i] != 0.0 else None for i in connection_order_3] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_5]
 
-        z_t = [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + \
-            [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_3] + \
-            [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + \
-            [None] + [coordinates[t]['z'][i] if coordinates[t]['x']
-                      [i] != 0.0 else None for i in connection_order_5]
+        z_t = [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x']
+                                                                                                                                                                                                                                     [i] != 0.0 else None for i in connection_order_3] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_5]
 
         x_lines.append(x_t)
         y_lines.append(y_t)
