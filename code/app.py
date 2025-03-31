@@ -5,6 +5,7 @@ import json
 import dash_extensions.javascript as dj
 import requests
 import random
+import os
 
 
 api_url = "http://127.0.0.1:8000/api/quertspeed"
@@ -35,6 +36,8 @@ with open('../data/athlete.json', 'r') as file:
 
 data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5, data_p6]
 app = Dash()
+
+port = os.getenv("PORT", 8050)
 
 # Define the number of time steps
 time_steps = 120
@@ -356,4 +359,4 @@ app.clientside_callback(
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8006)
+    app.run_server(debug=True, host="0.0.0.0", port=int(port))
