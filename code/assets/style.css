@@ -1,0 +1,40 @@
+.graph-video {
+    display: flex;
+    height: 500px;
+    width: 100%;
+    align-items: center;
+}
+
+.graph {
+    height: 100%;
+    width: 50%;
+}
+
+.video {
+    height: 100%;
+    width: 50%;
+}
+
+.button_1 {
+    height: 20px;
+    width: 40px;
+}
+
+.button_2 {
+    height: 20px;
+    width: 40px;
+}
+
+.button_3 {
+    height: 20px;
+    width: 40px;
+}
+
+.time-slider {
+    width: 90%;
+}
+
+.control-button {
+    display: flex;
+    margin-left: 20px;
+}

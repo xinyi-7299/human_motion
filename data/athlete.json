@@ -1,0 +1,50 @@
+{
+    "A01": {
+        "name": "James",
+        "height": 195,
+        "weight": 94,
+        "sport": "Taekwondo",
+        "kick height": 140,
+        "kick strength": 1200
+    },
+    "A02": {
+        "name": "Robert",
+        "height": 193,
+        "weight": 88,
+        "sport": "High Jump",
+        "jump height": 1.2,
+        "flight time": 0.6
+    },
+    "A03": {
+        "name": "John",
+        "height": 182,
+        "weight": 74,
+        "sport": "Javelin Throw",
+        "throw angle": 40,
+        "throw velocity": 15
+    },
+    "A04": {
+        "name": "Mary",
+        "height": 181,
+        "weight": 72,
+        "sport": "Sprint",
+        "run speed": 5.5,
+        "stride length": 1.5
+    },
+    "A06": {
+        "name": "David",
+        "height": 180,
+        "weight": 69,
+        "sport": "Boxing",
+        "punch height": 140,
+        "punch strength": 1500
+    },
+    "A07": {
+        "name": "William",
+        "height": 188,
+        "weight": 80,
+        "sport": "Freestyle Swimming",
+        "swim speed": 1.2,
+        "stroke rate": 40
+    }
+}
