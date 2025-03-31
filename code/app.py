@@ -37,6 +37,8 @@ with open('../data/athlete.json', 'r') as file:
 data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5, data_p6]
 app = Dash()
 
+server = app.server
+
 port = os.getenv("PORT", 8050)
 
 # Define the number of time steps
