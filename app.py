@@ -18,7 +18,7 @@ data_path_2 = os.path.join(BASE_DIR, "data", "bone_2.json")
 data_path_3 = os.path.join(BASE_DIR, "data", "bone_3.json")
 data_path_4 = os.path.join(BASE_DIR, "data", "bone_4.json")
 data_path_5 = os.path.join(BASE_DIR, "data", "bone_5.json")
-# data_path_6 = os.path.join(BASE_DIR, "`data", "bone_6.json")
+data_path_6 = os.path.join(BASE_DIR, "data", "bone_6.json")
 data_athlete = os.path.join(BASE_DIR, "data", "athlete.json")
 
 assets_path = os.path.join(BASE_DIR, "data", "output.mp4")
@@ -42,8 +42,8 @@ with open(data_path_4, 'r') as file:
     data_p4 = file.read()
 with open(data_path_5, 'r') as file:
     data_p5 = file.read()
-# with open(data_path_6, 'r') as file:
-#     data_p6 = file.read()
+with open(data_path_6, 'r') as file:
+    data_p6 = file.read()
 
 with open(data_athlete, 'r') as file:
     athlete_data = json.load(file)
@@ -52,7 +52,7 @@ with open(data_athlete, 'r') as file:
 #     data_p3 = file.read(file)
 
 
-data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5]
+data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5, data_p5]
 app = Dash()
 
 server = app.server
@@ -64,7 +64,7 @@ time_steps = 120
 figs = []
 
 # Loop through the data to create figures
-for n in range(0, 6):
+for n in range(0, 7):
     # Define connection orders for the lines
     coordinates = json.loads(data_list[n])
     connection_order_1 = [0, 1]
@@ -326,7 +326,7 @@ def toggle_play_pause(n_clicks):
         return True, "▶️"
 
 
-app.clientside_callback(
+# app.clientside_callback(
     """
     function updatePlay(video_id, n_clicks) {
         const video = document.getElementById(video_id)
@@ -340,9 +340,11 @@ app.clientside_callback(
     """,
     Input("video-player", "id"),
     Input("play-button", "n_clicks")
-)
 
-app.clientside_callback(
+
+# )
+
+    # app.clientside_callback(
     """
     function updateCurrentFrame(video_id) {
         const video = document.getElementById(video_id);
@@ -366,8 +368,9 @@ app.clientside_callback(
     Output("video-value", "data"),
     Input("video-player", "id"),
     Input("interval", "n_intervals")
-)
 
+
+# )
 
 if __name__ == '__main__':
     app.run_server(debug=True, host="0.0.0.0", port=int(port))
