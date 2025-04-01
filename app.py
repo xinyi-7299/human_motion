@@ -42,8 +42,8 @@ with open(data_path_4, 'r') as file:
     data_p4 = file.read()
 with open(data_path_5, 'r') as file:
     data_p5 = file.read()
-with open(data_path_6, 'r') as file:
-    data_p6 = file.read()
+# with open(data_path_6, 'r') as file:
+#     data_p6 = file.read()
 
 with open(data_athlete, 'r') as file:
     athlete_data = json.load(file)
@@ -52,7 +52,7 @@ with open(data_athlete, 'r') as file:
 #     data_p3 = file.read(file)
 
 
-data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5, data_p6]
+data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5]
 app = Dash()
 
 server = app.server
@@ -64,7 +64,7 @@ time_steps = 120
 figs = []
 
 # Loop through the data to create figures
-for n in range(0, 7):
+for n in range(0, 6):
     # Define connection orders for the lines
     coordinates = json.loads(data_list[n])
     connection_order_1 = [0, 1]
