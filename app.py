@@ -21,6 +21,12 @@ data_path_5 = os.path.join(BASE_DIR, "data", "bone_5.json")
 data_path_6 = os.path.join(BASE_DIR, "data", "bone_6.json")
 data_athlete = os.path.join(BASE_DIR, "data", "athlete.json")
 
+
+print("This is the base directory ========>")
+print(BASE_DIR)
+print("This is the data path1 ========>")
+
+print(data_path_0)
 # Load JSON data from files
 with open(data_path_0, 'r') as file:
     data_p0 = file.read()
