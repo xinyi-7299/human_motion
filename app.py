@@ -18,8 +18,10 @@ data_path_2 = os.path.join(BASE_DIR, "data", "bone_2.json")
 data_path_3 = os.path.join(BASE_DIR, "data", "bone_3.json")
 data_path_4 = os.path.join(BASE_DIR, "data", "bone_4.json")
 data_path_5 = os.path.join(BASE_DIR, "data", "bone_5.json")
-data_path_6 = os.path.join(BASE_DIR, "data", "bone_6.json")
+data_path_6 = os.path.join(BASE_DIR, "`data", "bone_6.json")
 data_athlete = os.path.join(BASE_DIR, "data", "athlete.json")
+
+assets_path = os.path.join(BASE_DIR, "data", "output.mp4")
 
 
 print("This is the base directory ========>")
@@ -162,7 +164,7 @@ app.layout = html.Div(
                       children=html.Video(
                           id="video-player",
                           controls=True,
-                          src="assets/output.mp4",
+                          src=assets_path,
                           autoPlay=False,
                           loop=True,
                           muted=True,
