@@ -5,9 +5,7 @@ import json
 import dash_extensions.javascript as dj
 import requests
 import random
-
-
-api_url = "http://127.0.0.1:8000/api/quertspeed"
+import os
 
 
 # Load JSON data from files
@@ -57,12 +55,16 @@ data_list_1 = [data_p0_1, data_p1_1,
                data_p2_1, data_p3_1, data_p4_1, data_p5_1]
 data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5]
 
-app = Dash()
 
+# Application initialization --------------------------------------------------
+app = Dash(__name__)  # Create Dash app instance
+server = app.server  # Get Flask server instance for deployment
+port = os.getenv("PORT", 8050)  # Get port from environment variable or default
+
+# 3D visualization preprocessing ----------------------------------------------
 # Define the number of time steps
 time_steps = 120
 figs = []
-figs_1 = []
 
 
 # Loop through the data to create figures
@@ -768,5 +770,10 @@ def update_chart(i, n):
 #     return
 
 
+# Application execution -------------------------------------------------------
 if __name__ == '__main__':
-    app.run(debug=True, port=8006)
+    app.run_server(
+        debug=True,
+        host="0.0.0.0",
+        use_reloader=True,
+        port=int(port))
