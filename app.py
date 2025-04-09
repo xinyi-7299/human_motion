@@ -11,46 +11,46 @@ api_url = "http://127.0.0.1:8000/api/quertspeed"
 
 
 # Load JSON data from files
-with open('../data/bone_0.json', 'r') as file:
+with open('data/bone_0.json', 'r') as file:
     data_p0_1 = file.read()
-with open('../data/bone_1.json', 'r') as file:
+with open('data/bone_1.json', 'r') as file:
     data_p1_1 = file.read()
-with open('../data/bone_2.json', 'r') as file:
+with open('data/bone_2.json', 'r') as file:
     data_p2_1 = file.read()
-with open('../data/bone_3.json', 'r') as file:
+with open('data/bone_3.json', 'r') as file:
     data_p3_1 = file.read()
-with open('../data/bone_4.json', 'r') as file:
+with open('data/bone_4.json', 'r') as file:
     data_p4_1 = file.read()
-with open('../data/bone_5.json', 'r') as file:
+with open('data/bone_5.json', 'r') as file:
     data_p5_1 = file.read()
 
-with open('../data/data_A01.json', 'r') as file:
+with open('data/data_A01.json', 'r') as file:
     data_A01 = json.load(file)
-with open('../data/data_A02.json', 'r') as file:
+with open('data/data_A02.json', 'r') as file:
     data_A02 = json.load(file)
-with open('../data/data_A03.json', 'r') as file:
+with open('data/data_A03.json', 'r') as file:
     data_A03 = json.load(file)
-with open('../data/data_A04.json', 'r') as file:
+with open('data/data_A04.json', 'r') as file:
     data_A04 = json.load(file)
-with open('../data/data_A05.json', 'r') as file:
+with open('data/data_A05.json', 'r') as file:
     data_A05 = json.load(file)
-with open('../data/data_A06.json', 'r') as file:
+with open('data/data_A06.json', 'r') as file:
     data_A06 = json.load(file)
 
-with open('../data/athlete.json', 'r') as file:
+with open('data/athlete.json', 'r') as file:
     athlete_data = json.load(file)
 
-with open('../data/yolo_1.json', 'r') as file:
+with open('data/yolo_1.json', 'r') as file:
     data_p0 = file.read()
-with open('../data/yolo_2.json', 'r') as file:
+with open('data/yolo_2.json', 'r') as file:
     data_p1 = file.read()
-with open('../data/yolo_3.json', 'r') as file:
+with open('data/yolo_3.json', 'r') as file:
     data_p2 = file.read()
-with open('../data/yolo_4.json', 'r') as file:
+with open('data/yolo_4.json', 'r') as file:
     data_p3 = file.read()
-with open('../data/yolo_5.json', 'r') as file:
+with open('data/yolo_5.json', 'r') as file:
     data_p4 = file.read()
-with open('../data/yolo_6.json', 'r') as file:
+with open('data/yolo_6.json', 'r') as file:
     data_p5 = file.read()
 
 data_list_1 = [data_p0_1, data_p1_1,
