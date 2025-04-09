@@ -294,7 +294,8 @@ app.layout = html.Div(
                                     figure=fig
                                 )
                             ]
-                        )
+                        ),
+                        html.Div(id="graph-container", children=[])
                     ]
                 ),
             ]
@@ -545,6 +546,7 @@ app.clientside_callback(
         }
     }
     """,
+    Output("graph-container", "children"),
     Input("video-player", "id"),
     Input("play-button", "n_clicks"),
     Input("dropdown", "value")
