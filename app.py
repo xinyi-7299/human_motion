@@ -258,12 +258,12 @@ app.layout = html.Div(
      State('video-value', 'data')]
 )
 def updateValue(n_intervals, value, data):
-    if value is None or data is None:
-        return 0
-    if abs(value - data) >= 10:
-        return data
-    else:
-        return (value + 1) % 120
+    # if value is None or data is None:
+    #     return 0
+    # if abs(value - data) >= 10:
+    #     return data
+    # else:
+    return (value + 1) % 120
 
 
 @app.callback(
