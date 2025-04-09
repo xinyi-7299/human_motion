@@ -226,7 +226,7 @@ app.layout = html.Div(
                         # Control the automatically transfer video frame to slider
                         dcc.Interval(
                             id='interval',
-                            interval=30,
+                            interval=100,
                             n_intervals=0,
                             disabled=False
                         )
