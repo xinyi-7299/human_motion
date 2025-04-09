@@ -226,9 +226,9 @@ app.layout = html.Div(
                         # Control the automatically transfer video frame to slider
                         dcc.Interval(
                             id='interval',
-                            interval=1000,
+                            interval=30,
                             n_intervals=0,
-                            disabled=False
+                            # disabled=True
                         )
                     ]),
 
@@ -261,9 +261,12 @@ def updateValue(n_intervals, value, data):
     # if value is None or data is None:
     #     return 0
     # if abs(value - data) >= 10:
+    #     print(f"data: {data}")
     #     return data
     # else:
-    return (value + 1) % 120
+    #     print(f"value: {value + 1}")
+    #     return (value + 1) % 120
+    return n_intervals
 
 
 @app.callback(
@@ -392,17 +395,17 @@ def update_figure(value, n):
     return fig
 
 
-@app.callback(
-    Output('interval', 'disabled'),
-    Output('play-button', 'children'),
-    Input('play-button', 'n_clicks'),
-    prevent_initial_call=False
-)
-def toggle_play_pause(n_clicks):
-    if n_clicks % 2 == 1:
-        return False, "⏸️"
-    else:
-        return True, "▶️"
+# @app.callback(
+#     Output('interval', 'disabled'),
+#     Output('play-button', 'children'),
+#     Input('play-button', 'n_clicks'),
+#     prevent_initial_call=False
+# )
+# def toggle_play_pause(n_clicks):
+#     if n_clicks % 2 == 1:
+#         return False, "⏸️"
+#     else:
+#         return True, "▶️"
 
 
 app.clientside_callback(
@@ -437,7 +440,7 @@ app.clientside_callback(
                 const currentFrame = Math.floor(video.currentTime * FPS);
                 //console.log(video.currentTime)
                 if (currentFrame <= 120) {
-                    console.log(currentFrame);  // Log the current frame value
+                    //console.log(currentFrame);  // Log the current frame value
                     resolve(currentFrame);  // Resolve the Promise with current frame
                 } else {
                     resolve(0);  // If frame exceeds, resolve with 0
