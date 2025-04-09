@@ -31,7 +31,7 @@
         "run speed": 5.5,
         "stride length": 1.5
     },
-    "A06": {
+    "A05": {
         "name": "David",
         "height": 180,
         "weight": 69,
@@ -39,7 +39,7 @@
         "punch height": 140,
         "punch strength": 1500
     },
-    "A07": {
+    "A06": {
         "name": "William",
         "height": 188,
         "weight": 80,

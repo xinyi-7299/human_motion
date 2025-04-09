@@ -65,6 +65,7 @@ port = os.getenv("PORT", 8050)  # Get port from environment variable or default
 # Define the number of time steps
 time_steps = 120
 figs = []
+figs_1 = []
 
 
 # Loop through the data to create figures
@@ -351,7 +352,7 @@ def updateValue(n_intervals, value, data):
     if abs(value - data) >= 10:
         return data
     else:
-        return (value + 1) % 120
+        return (value + 1) % 119
 
 
 @app.callback(
