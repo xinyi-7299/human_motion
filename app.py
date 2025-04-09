@@ -220,7 +220,7 @@ app.layout = html.Div(
                             id='time-slider',
                             min=0,
                             max=120,
-                            step=2,
+                            step=1,
                             value=0,
                         ),
                         # Control the automatically transfer video frame to slider
