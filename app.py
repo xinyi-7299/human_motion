@@ -7,26 +7,38 @@ import requests
 import random
 import os
 
-# File path configuration -----------------------------------------------------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Project root directory
+# Load JSON data from files
+with open('data/bone_0.json', 'r') as file:
+    data_p0 = file.read()
+with open('data/bone_1.json', 'r') as file:
+    data_p1 = file.read()
+with open('data/bone_2.json', 'r') as file:
+    data_p2 = file.read()
+with open('data/bone_3.json', 'r') as file:
+    data_p3 = file.read()
+with open('data/bone_4.json', 'r') as file:
+    data_p4 = file.read()
+with open('data/bone_5.json', 'r') as file:
+    data_p5 = file.read()
 
-# Define data file paths
-DATA_FILES = [os.path.join(
-    BASE_DIR, "data", f"bone_{i}.json") for i in range(7)]
-ATHLETE_DATA_PATH = os.path.join(
-    BASE_DIR, "data", "athlete.json")  # Athlete metadata
-VIDEO_PATH = os.path.join(BASE_DIR, "data", "output.mp4")  # Sample video
+with open('data/data_A01.json', 'r') as file:
+    data_A01 = json.load(file)
+with open('data/data_A02.json', 'r') as file:
+    data_A02 = json.load(file)
+with open('data/data_A03.json', 'r') as file:
+    data_A03 = json.load(file)
+with open('data/data_A04.json', 'r') as file:
+    data_A04 = json.load(file)
+with open('data/data_A05.json', 'r') as file:
+    data_A05 = json.load(file)
+with open('data/data_A06.json', 'r') as file:
+    data_A06 = json.load(file)
 
-# Data loading ----------------------------------------------------------------
-# Load skeletal data
-bone_data = []
-for path in DATA_FILES:
-    with open(path, 'r') as f:
-        bone_data.append(f.read())
+with open('data/athlete.json', 'r') as file:
+    athlete_data = json.load(file)
 
-# Load athlete information
-with open(ATHLETE_DATA_PATH, 'r') as f:
-    athlete_data = json.load(f)
+
+data_list = [data_p0, data_p1, data_p2, data_p3, data_p4, data_p5]
 
 # Application initialization --------------------------------------------------
 app = Dash(__name__)  # Create Dash app instance
@@ -34,337 +46,515 @@ server = app.server  # Get Flask server instance for deployment
 port = os.getenv("PORT", 8050)  # Get port from environment variable or default
 
 # 3D visualization preprocessing ----------------------------------------------
-TIME_STEPS = 120  # Total animation frames
-figs = []  # Store 3D figures for all athletes
+# Define the number of time steps
+time_steps = 120
+figs = []
 
-# Bone connection orders for skeleton visualization
-BONE_CONNECTIONS = [
-    [0, 1],          # Upper torso
-    [4, 3, 2, 5, 6, 7],  # Right arm
-    [2, 8, 11, 5],   # Spine
-    [8, 9, 10],      # Left leg
-    [11, 12, 13]     # Right leg
-]
+# Loop through the data to create figures
+for n in range(0, 6):
+    # Define connection orders for the lines
+    coordinates = json.loads(data_list[n])
+    connection_order_1 = [0, 1]
+    connection_order_2 = [4, 3, 2, 5, 6, 7]
+    connection_order_3 = [2, 8, 11, 5]
+    connection_order_4 = [8, 9, 10]
+    connection_order_5 = [11, 12, 13]
 
+    x_lines = []
+    y_lines = []
+    z_lines = []
 
-def process_coordinates(coordinates, connections):
-    """Process coordinate data to generate line connections between joints
-    Args:
-        coordinates: Raw joint position data
-        connections: Defined bone connection orders
-    Returns:
-        Tuple of (x_lines, y_lines, z_lines) for 3D plotting
-    """
-    x_lines, y_lines, z_lines = [], [], []
-    for t in range(TIME_STEPS):
-        # Generate coordinate sequences with None separators between bones
-        x_t = sum(([coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None
-                  for i in conn] + [None] for conn in connections), [])[:-1]
+    # Loop through each time step to create lines
+    for t in range(time_steps):
+        x_t = [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x']
+                                                                                                                                                                                                                                     [i] != 0.0 else None for i in connection_order_3] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + [None] + [coordinates[t]['x'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_5]
 
-        y_t = sum(([coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None
-                  for i in conn] + [None] for conn in connections), [])[:-1]
+        y_t = [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x']
+                                                                                                                                                                                                                                     [i] != 0.0 else None for i in connection_order_3] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + [None] + [coordinates[t]['y'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_5]
 
-        z_t = sum(([coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None
-                  for i in conn] + [None] for conn in connections), [])[:-1]
+        z_t = [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_1] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_2] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x']
+                                                                                                                                                                                                                                     [i] != 0.0 else None for i in connection_order_3] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_4] + [None] + [coordinates[t]['z'][i] if coordinates[t]['x'][i] != 0.0 else None for i in connection_order_5]
 
         x_lines.append(x_t)
         y_lines.append(y_t)
         z_lines.append(z_t)
-    return x_lines, y_lines, z_lines
 
+    # Create frames for the animation
+    frames = [go.Frame(
+        data=[go.Scatter3d(
+            x=x_lines[t], y=y_lines[t], z=z_lines[t],
+            mode='lines+markers', line=dict(color='red', width=3),
+            marker=dict(size=4, color='green')
+        )],
+        name=f"frame_{t}"
+    ) for t in range(time_steps)]
 
-# Create 3D figures for each athlete
-for athlete_idx in range(7):
-    coordinates = json.loads(bone_data[athlete_idx])
-    x_lines, y_lines, z_lines = process_coordinates(
-        coordinates, BONE_CONNECTIONS)
-
-    # Create animation frames
-    frames = [
-        go.Frame(
-            data=[go.Scatter3d(
-                x=x_lines[t], y=y_lines[t], z=z_lines[t],
-                mode='lines+markers',
-                line=dict(color='red', width=3),
-                marker=dict(size=4, color='green')
-            )],
-            name=f"frame_{t}"
-        ) for t in range(TIME_STEPS)
-    ]
-
-    # Initialize figure
+    # Create the initial figure
     fig = go.Figure(
         data=[go.Scatter3d(
-            x=x_lines[0], y=y_lines[0], z=z_lines[0],
-            mode='lines+markers',
-            line=dict(color='red', width=3),
+            x=x_lines[0],
+            y=y_lines[0],
+            z=z_lines[0],
+            mode='lines+markers', line=dict(color='red', width=3),
             marker=dict(size=4, color='green')
         )],
         layout=go.Layout(
-            title="Skeletal Motion Visualization",
+            width=600,
+            height=500,
+            margin=dict(t=50, l=1),
+            title="skeleton",
             scene=dict(
-                xaxis=dict(title='X Axis'),
-                yaxis=dict(title='Y Axis'),
-                zaxis=dict(title='Z Axis'),
-                camera=dict(eye=dict(x=1, y=-2, z=0.3))  # Initial view angle
+                xaxis=dict(title='X Axis',),
+                yaxis=dict(title='Y Axis',),
+                zaxis=dict(title='Z Axis', range=[0, 2]),
+                camera=dict(
+                    eye=dict(x=1, y=-2, z=0.3)
+                )
             )
         ),
         frames=frames
     )
+    # list to store the figures
     figs.append(fig)
 
-# Dashboard layout ------------------------------------------------------------
 app.layout = html.Div(
-    className="main-container",
+    className="all",
     children=[
-        # Visualization and video section
         html.Div(
-            className="visualization-section",
+            className="visual_video",
             children=[
                 html.Div(
-                    id='athlete-info-panel',
-                    children="Select an athlete to view details",
-                    style={'marginTop': '20px', 'fontSize': '18px'}
+                    className="visual",
+                    children=[
+                        html.Div(id='text', children="Please select an athlete to view their information.",
+                                 style={'marginTop': '20px', 'fontSize': '18px'}),
+                        html.Div(
+                            children=[
+                                dcc.Store(id='figure-store', data=''),
+                                dcc.Graph(
+                                    id='3d-sport-graph',
+                                    figure=figs[0],
+                                ),
+                                dcc.RadioItems(
+                                    className="checklist",
+                                    id='checklist',
+                                    options=[
+                                        {'label': 'A01', 'value': 0},
+                                        {'label': 'A02', 'value': 1},
+                                        {'label': 'A03', 'value': 3},
+                                        {'label': 'A04', 'value': 2},
+                                        {'label': 'A05', 'value': 4},
+                                        {'label': 'A06', 'value': 5},
+                                    ],
+                                    value=0,
+                                    inline=True
+                                )
+                            ]
+                        ),
+                        html.Div(
+                            className="button",
+                            children=[
+                                html.Button("▶️", id="play-button",
+                                            n_clicks=0, style={"width": "50px"}),
+                                dcc.Dropdown(
+                                    className="control-button",
+                                    id="dropdown",
+                                    options=[
+                                        {"label": "0.25X", "value": 0.25},
+                                        {"label": "0.5X", "value": 0.5},
+                                        {"label": "1.0X", "value": 1.0}
+                                    ],
+                                    value=1.0,
+                                    clearable=False,
+                                    style={"width": "90px"}
+
+                                ),
+                                dcc.Store(id="video-value"),
+
+                            ]
+
+
+                        ),
+
+
+
+                    ]
                 ),
                 html.Div(
-                    className="graph-container",
+                    className="video_graph",
                     children=[
-                        dcc.Graph(
-                            id='3d-visualization',
-                            figure=figs[0],
-                            config={'responsive': True}
+                        html.Div(
+                            className="video",
+                            children=html.Video(
+                                id="video-player",
+                                controls=True,
+                                src="assets/output.mp4",
+                                autoPlay=False,
+                                loop=True,
+                                muted=True,
+                                style={"width": "600px"}
+                            )
                         ),
-                        dcc.RadioItems(
-                            id='athlete-selector',
-                            options=[
-                                {'label': f'A0{i+1}', 'value': i}
-                                for i in range(7)
-                            ],
-                            value=0,
-                            inline=True,
-                            labelStyle={'margin-right': '15px'}
+                        html.Div(
+                            className="graph",
+                            children=[
+                                html.H3(),
+                                dcc.Graph(
+                                    id="chart_1",
+                                    figure=fig
+                                )
+                            ]
                         )
                     ]
                 ),
-                html.Video(
-                    id="motion-video",
-                    controls=True,
-                    src=VIDEO_PATH,
-                    autoPlay=False,
-                    loop=True,
-                    muted=True,
-                    style={"width": "600px", "borderRadius": "8px"}
-                )
             ]
         ),
-
-        # Control panel
         html.Div(
-            className="control-section",
+            className="play-slider",
             children=[
-                # Timeline controls
                 html.Div(
-                    className="timeline-controls",
+                    className="time-slider",
                     children=[
                         dcc.Slider(
-                            id='frame-slider',
+                            id='time-slider',
                             min=0,
-                            max=TIME_STEPS-1,
-                            step=1,
+                            max=120,
+                            step=2,
                             value=0,
-                            marks={i: str(i) for i in range(0, 121, 30)},
-                            tooltip={"placement": "bottom"}
                         ),
+                        # Control the automatically transfer video frame to slider
                         dcc.Interval(
-                            id='animation-timer',
-                            interval=35,  # ~28.5fps (1000/35)
+                            id='interval',
+                            interval=30,
                             n_intervals=0,
                             disabled=False
                         )
-                    ]
-                ),
+                    ]),
 
-                # Playback controls
-                html.Div(
-                    className="playback-controls",
-                    children=[
-                        html.Button(
-                            "▶️",
-                            id="play-pause-btn",
-                            n_clicks=0,
-                            className="control-btn"
-                        ),
-                        dcc.Dropdown(
-                            id="speed-control",
-                            options=[
-                                {"label": "0.25X", "value": 0.25},
-                                {"label": "0.5X", "value": 0.5},
-                                {"label": "1.0X", "value": 1.0},
-                                {"label": "1.5X", "value": 1.5}
-                            ],
-                            value=1.0,
-                            clearable=False,
-                            className="speed-selector"
-                        ),
-                        html.Button(
-                            "Sync",
-                            id="sync-btn",
-                            className="control-btn",
-                            title="Synchronize video with animation"
-                        ),
-                        # Video frame data storage
-                        dcc.Store(id="video-frame-store")
-                    ]
-                )
-            ]
-        )
-    ]
-)
-
-# Callback functions ----------------------------------------------------------
-
-
-@app.callback(
-    Output('frame-slider', 'value'),
-    [Input('animation-timer', 'n_intervals'),
-     Input('sync-btn', 'n_clicks'),
-     State('frame-slider', 'value'),
-     State('video-frame-store', 'data')]
-)
-def update_slider(n_intervals, sync_clicks, current_frame, video_frame):
-    """Update slider position based on animation or video sync
-    Args:
-        n_intervals: Timer trigger count
-        sync_clicks: Sync button clicks
-        current_frame: Current slider value
-        video_frame: Video frame data from store
-    Returns:
-        Updated frame index
-    """
-    ctx = dash.callback_context
-    if not ctx.triggered:
-        return 0
-
-    trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
-
-    if trigger_id == 'sync-btn':
-        return video_frame or 0
-    elif trigger_id == 'animation-timer':
-        return (current_frame + 1) % TIME_STEPS
-    return current_frame
-
-
-@app.callback(
-    Output('athlete-info-panel', 'children'),
-    [Input('athlete-selector', 'value'),
-     Input('frame-slider', 'value')]
-)
-def update_athlete_info(athlete_id, frame):
-    """Display athlete information and performance data
-    Args:
-        athlete_id: Selected athlete ID
-        frame: Current animation frame
-    Returns:
-        Formatted athlete information HTML components
-    """
-    athlete_key = f"A0{athlete_id + 1}"
-    info = athlete_data.get(athlete_key, "Information unavailable")
-
-    # Simulated performance data (replace with actual API call)
-    speed = random.uniform(8.5, 12.5)  # Demo random speed
-
-    return html.Div([
-        html.H3(f"Athlete {athlete_key} Profile"),
-        html.P(info),
-        html.P(f"Current speed: {speed:.2f} m/s (Frame {frame})")
+            ]),
     ])
 
 
+# @app.callback(
+#     Output('time-slider', 'value'),
+#     [Input("interval", "n_intervals"),
+#      Input("update-value", "n_clicks"),
+#      State('time-slider', 'value'),
+#      State('video-value', 'data')]
+# )
+# def updateValue(n_intervals, n_clicks, value, data):
+#     triggered_id = ctx.triggered_id
+#     if triggered_id == "update-value":
+#         return data if data is not None else 0
+#     elif triggered_id == "interval":
+#         return (value + 1) % 120 if value is not None else 0
+#     return 0
+
 @app.callback(
-    Output('animation-timer', 'interval'),
-    Input('speed-control', 'value')
+    Output('time-slider', 'value'),
+    [Input("interval", "n_intervals"),
+     State('time-slider', 'value'),
+     State('video-value', 'data')]
 )
-def adjust_playback_speed(speed):
-    """Adjust animation playback speed
-    Args:
-        speed: Selected speed multiplier
-    Returns:
-        Updated interval duration in milliseconds
-    """
-    speed_mapping = {
-        0.25: 140,   # 140ms = ~7fps
-        0.5: 70,     # 70ms = ~14fps
-        1.0: 35,     # 35ms = ~28.5fps
-        1.5: 23      # 23ms = ~43fps
-    }
-    return speed_mapping.get(speed, 35)
+def updateValue(n_intervals, value, data):
+    if value is None or data is None:
+        return 0
+    if abs(value - data) >= 10:
+        return data
+    else:
+        return (value + 1) % 120
 
 
 @app.callback(
-    Output('3d-visualization', 'figure'),
-    [Input('frame-slider', 'value'),
-     Input('athlete-selector', 'value')]
+    Output('text', 'children'),
+    [Input('checklist', 'value'),
+     Input('time-slider', 'value')]
 )
-def update_3d_visualization(frame, athlete_id):
-    """Update 3D visualization to specified frame
-    Args:
-        frame: Target frame index
-        athlete_id: Selected athlete ID
-    Returns:
-        Updated Plotly figure object
-    """
-    fig = figs[athlete_id]
-    fig.update_traces(
-        x=fig.frames[frame].data[0].x,
-        y=fig.frames[frame].data[0].y,
-        z=fig.frames[frame].data[0].z,
-        marker=dict(color='blue' if athlete_id % 2 else 'red')
-    )
+def update_text(value, n):
+    num = int(value)+1
+    athlete = athlete_data[f"A0{num}"]
+    if value == 0:
+        sport_data = data_A01[n]["height"]
+        return html.Div(className="info", children=[
+            html.Div(f"name: {athlete['name']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"height: {athlete['height']}cm",
+                     style={"margin-right": "20px"}),
+            html.Div(f"weight: {athlete['weight']}kg",
+                     style={"margin-right": "20px"}),
+            html.Div(f"sport: {athlete['sport']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"kick height: {sport_data}m"),
+        ])
+    elif value == 1:
+        sport_data = data_A02[n]["speed"]
+        return html.Div(className="info", children=[
+            html.Div(f"name: {athlete['name']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"height: {athlete['height']}cm",
+                     style={"margin-right": "20px"}),
+            html.Div(f"weight: {athlete['weight']}kg",
+                     style={"margin-right": "20px"}),
+            html.Div(f"sport: {athlete['sport']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"jogging speed: {sport_data}m/s"),
+        ])
+    elif value == 2:
+        sport_data = data_A04[n]["height"]
+        return html.Div(className="info", children=[
+            html.Div(f"name: {athlete['name']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"height: {athlete['height']}cm",
+                     style={"margin-right": "20px"}),
+            html.Div(f"weight: {athlete['weight']}kg",
+                     style={"margin-right": "20px"}),
+            html.Div(f"sport: {athlete['sport']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"jump height: {sport_data}m"),
+        ])
+    elif value == 3:
+        sport_data = data_A03[n]["height"]
+        return html.Div(className="info", children=[
+            html.Div(f"name: {athlete['name']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"height: {athlete['height']}cm",
+                     style={"margin-right": "20px"}),
+            html.Div(f"weight: {athlete['weight']}kg",
+                     style={"margin-right": "20px"}),
+            html.Div(f"sport: {athlete['sport']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"throw height: {sport_data}m"),
+        ])
+    elif value == 4:
+        sport_data = data_A05[n]["speed"]
+        return html.Div(className="info", children=[
+            html.Div(f"name: {athlete['name']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"height: {athlete['height']}cm",
+                     style={"margin-right": "20px"}),
+            html.Div(f"weight: {athlete['weight']}kg",
+                     style={"margin-right": "20px"}),
+            html.Div(f"sport: {athlete['sport']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"boxing speed: {sport_data}m/s"),
+        ])
+    elif value == 5:
+        sport_data = data_A06[n]["speed"]
+        return html.Div(className="info", children=[
+            html.Div(f"name: {athlete['name']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"height: {athlete['height']}cm",
+                     style={"margin-right": "20px"}),
+            html.Div(f"weight: {athlete['weight']}kg",
+                     style={"margin-right": "20px"}),
+            html.Div(f"sport: {athlete['sport']}",
+                     style={"margin-right": "20px"}),
+            html.Div(f"swim speed: {sport_data}m/s"),
+        ])
+
+
+@app.callback(
+    Output('interval', 'interval'),
+    Input('dropdown', 'value'),
+)
+def update_speed(value):
+    speed = 30
+    if value == 0.25:
+        speed = 100
+    if value == 0.5:
+        speed = 50
+    return speed
+
+
+@app.callback(
+    Output('3d-sport-graph', 'figure'),
+    [Input('time-slider', 'value'),
+     Input('checklist', 'value')]
+)
+def update_figure(value, n):
+    a = int(n)
+    fig = figs[a]
+    fig.update_traces(x=fig.frames[value].data[0].x,
+                      y=fig.frames[value].data[0].y,
+                      z=fig.frames[value].data[0].z,
+                      line=dict(color='red', width=3),
+                      marker=dict(
+        color=fig.frames[value].data[0].marker.color, size=frames[value].data[0].marker.size))
+    # fig.update_layout(
+    #     width=600,
+    #     height=500,
+    #     margin=dict(t=50, l=1),
+    #     xaxis=dict(
+    #         range=[-1, 2.5]
+    #     )
+    # )
     return fig
 
 
 @app.callback(
-    Output('animation-timer', 'disabled'),
-    Output('play-pause-btn', 'children'),
-    Input('play-pause-btn', 'n_clicks')
+    Output('interval', 'disabled'),
+    Output('play-button', 'children'),
+    Input('play-button', 'n_clicks'),
+    prevent_initial_call=False
 )
-def toggle_playback_state(n_clicks):
-    """Toggle animation play/pause state
-    Args:
-        n_clicks: Button click count
-    Returns:
-        Tuple: (timer_disabled_state, button_label)
-    """
-    is_paused = n_clicks % 2 == 0
-    return (not is_paused, "⏸️") if is_paused else (is_paused, "▶️")
+def toggle_play_pause(n_clicks):
+    if n_clicks % 2 == 1:
+        return False, "⏸️"
+    else:
+        return True, "▶️"
 
 
-# Client-side callback (JavaScript integration) -------------------------------
 app.clientside_callback(
     """
-    function syncVideoWithSlider(video_id) {
-        const videoElement = document.getElementById(video_id);
-        if (!videoElement) return null;
-
-        const FRAMES_PER_SECOND = 33.3;  // Video frame rate
-        return new Promise(resolve => {
-            videoElement.addEventListener('timeupdate', () => {
-                const currentFrame = Math.min(
-                    Math.floor(videoElement.currentTime * FRAMES_PER_SECOND),
-                    TIME_STEPS - 1
-                );
-                resolve(currentFrame);
-            });
-        });
+    function updatePlay(video_id, n_clicks, value) {
+        const video = document.getElementById(video_id)
+        if (n_clicks % 2 === 1){
+            video.play()
+        }
+        else {
+            video.pause()
+        }
+        if (value && value){
+            video.playbackRate = value;
+        }
     }
     """,
-    Output('video-frame-store', 'data'),
-    Input('motion-video', 'id')
+    Input("video-player", "id"),
+    Input("play-button", "n_clicks"),
+    Input("dropdown", "value")
 )
+
+app.clientside_callback(
+    """
+    function updateCurrentFrame(video_id) {
+        const video = document.getElementById(video_id);
+        if (!video) return null;
+        const FPS = 33.3;
+        return new Promise(resolve => {
+            video.addEventListener("timeupdate", () => {
+                const currentFrame = Math.floor(video.currentTime * FPS);
+                //console.log(video.currentTime)
+                if (currentFrame <= 120) {
+                    console.log(currentFrame);  // Log the current frame value
+                    resolve(currentFrame);  // Resolve the Promise with current frame
+                } else {
+                    resolve(0);  // If frame exceeds, resolve with 0
+                }
+
+             });
+         });
+     }
+     """,
+    Output("video-value", "data"),
+    Input("video-player", "id"),
+    Input("interval", "n_intervals")
+)
+
+# app.clientside_callback(
+#     """
+#     function playbackRate(video_id, value) {
+#         const video = document.getElementById(video_id);
+#         if (video && value) {
+#             video.playbackRate = value;
+#         }
+#      """,
+#     Input("video-player", "id"),
+#     Input("dropdown", "value")
+# )
+
+
+@app.callback(
+    Output("chart_1", "figure"),
+    [Input("time-slider", "value"),
+     Input("checklist", "value")]
+)
+def update_chart(i, n):
+    fig = go.Figure()
+    if n == 0:
+        data = data_A01[0:i+1]
+        data_x = [item["frame"] for item in data]
+        data_y = [item["height"] for item in data]
+        fig.add_trace(go.Scatter(x=data_x, y=data_y, line=dict(color="blue")))
+        fig.update_layout(
+            title="kick height",
+            xaxis=dict(title="frame"),
+            yaxis=dict(title="height(m)"),
+            width=700,
+            height=350,
+            margin=dict(t=50, l=1)
+        )
+    elif n == 1:
+        data = data_A02[0:i+1]
+        data_x = [item["frame"] for item in data]
+        data_y = [item["speed"] for item in data]
+        fig.add_trace(go.Scatter(x=data_x, y=data_y, line=dict(color="blue")))
+        fig.update_layout(
+            title="jogging speed",
+            xaxis=dict(title="frame"),
+            yaxis=dict(title="speed(m/s)"),
+            width=700,
+            height=350,
+            margin=dict(t=50, l=1)
+        )
+    elif n == 2:
+        data = data_A04[0:i+1]
+        data_x = [item["frame"] for item in data]
+        data_y = [item["height"] for item in data]
+        fig.add_trace(go.Scatter(x=data_x, y=data_y, line=dict(color="blue")))
+        fig.update_layout(
+            title="jump height",
+            xaxis=dict(title="frame"),
+            yaxis=dict(title="height(m)"),
+            width=700,
+            height=350,
+            margin=dict(t=50, l=1)
+        )
+    elif n == 3:
+        data = data_A03[0:i+1]
+        data_x = [item["frame"] for item in data]
+        data_y = [item["height"] for item in data]
+        fig.add_trace(go.Scatter(x=data_x, y=data_y, line=dict(color="blue")))
+        fig.update_layout(
+            title="throw height",
+            xaxis=dict(title="frame"),
+            yaxis=dict(title="height(m)"),
+            width=700,
+            height=350,
+            margin=dict(t=50, l=1)
+        )
+    elif n == 4:
+        data = data_A05[0:i+1]
+        data_x = [item["frame"] for item in data]
+        data_y = [item["speed"] for item in data]
+        fig.add_trace(go.Scatter(x=data_x, y=data_y, line=dict(color="blue")))
+        fig.update_layout(
+            title="boxing speed",
+            xaxis=dict(title="frame"),
+            yaxis=dict(title="speed(m/s)"),
+            width=700,
+            height=350,
+            margin=dict(t=50, l=1)
+        )
+    elif n == 5:
+        data = data_A06[0:i+1]
+        data_x = [item["frame"] for item in data]
+        data_y = [item["speed"] for item in data]
+        fig.add_trace(go.Scatter(x=data_x, y=data_y, line=dict(color="blue")))
+        fig.update_layout(
+            title="swim speed",
+            xaxis=dict(title="frame"),
+            yaxis=dict(title="speed(m/s)"),
+            width=700,
+            height=350,
+            margin=dict(t=50, l=1)
+        )
+    return fig
+
 
 # Application execution -------------------------------------------------------
 if __name__ == '__main__':
     app.run_server(
         debug=True,
         host="0.0.0.0",
+        use_reloader=True,
         port=int(port))
