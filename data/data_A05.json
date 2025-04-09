@@ -1,487 +1,56 @@
 [
     {
         "frame": 0,
-        "speed": 0.0
-    },
-    {
-        "frame": 1,
-        "speed": 3.19
-    },
-    {
-        "frame": 2,
-        "speed": 3.46
-    },
-    {
-        "frame": 3,
-        "speed": 3.42
-    },
-    {
-        "frame": 4,
-        "speed": 3.27
-    },
-    {
-        "frame": 5,
-        "speed": 3.12
-    },
-    {
-        "frame": 6,
-        "speed": 2.85
-    },
-    {
-        "frame": 7,
-        "speed": 2.68
-    },
-    {
-        "frame": 8,
-        "speed": 2.56
-    },
-    {
-        "frame": 9,
-        "speed": 2.65
-    },
-    {
-        "frame": 10,
-        "speed": 2.71
-    },
-    {
-        "frame": 11,
-        "speed": 2.79
-    },
-    {
-        "frame": 12,
-        "speed": 2.94
-    },
-    {
-        "frame": 13,
-        "speed": 3.03
-    },
-    {
-        "frame": 14,
-        "speed": 3.09
+        "speed": 0.0,
+        "acceleration": 0.0,
+        "force": 0.0
     },
     {
         "frame": 15,
-        "speed": 3.12
-    },
-    {
-        "frame": 16,
-        "speed": 3.18
-    },
-    {
-        "frame": 17,
-        "speed": 3.24
-    },
-    {
-        "frame": 18,
-        "speed": 3.15
-    },
-    {
-        "frame": 19,
-        "speed": 2.97
-    },
-    {
-        "frame": 20,
-        "speed": 2.67
-    },
-    {
-        "frame": 21,
-        "speed": 2.88
-    },
-    {
-        "frame": 22,
-        "speed": 3.03
-    },
-    {
-        "frame": 23,
-        "speed": 2.97
-    },
-    {
-        "frame": 24,
-        "speed": 3.0
-    },
-    {
-        "frame": 25,
-        "speed": 3.0
-    },
-    {
-        "frame": 26,
-        "speed": 3.18
-    },
-    {
-        "frame": 27,
-        "speed": 3.21
-    },
-    {
-        "frame": 28,
-        "speed": 3.18
-    },
-    {
-        "frame": 29,
-        "speed": 3.15
+        "speed": 0.84,
+        "acceleration": 0.0,
+        "force": 0.0
     },
     {
         "frame": 30,
-        "speed": 3.03
-    },
-    {
-        "frame": 31,
-        "speed": 3.06
-    },
-    {
-        "frame": 32,
-        "speed": 3.01
-    },
-    {
-        "frame": 33,
-        "speed": 2.95
-    },
-    {
-        "frame": 34,
-        "speed": 2.95
-    },
-    {
-        "frame": 35,
-        "speed": 2.89
-    },
-    {
-        "frame": 36,
-        "speed": 2.95
-    },
-    {
-        "frame": 37,
-        "speed": 2.95
-    },
-    {
-        "frame": 38,
-        "speed": 3.04
-    },
-    {
-        "frame": 39,
-        "speed": 3.09
-    },
-    {
-        "frame": 40,
-        "speed": 3.0
-    },
-    {
-        "frame": 41,
-        "speed": 2.85
-    },
-    {
-        "frame": 42,
-        "speed": 2.73
-    },
-    {
-        "frame": 43,
-        "speed": 2.86
-    },
-    {
-        "frame": 44,
-        "speed": 2.94
+        "speed": 1.57,
+        "acceleration": 1.46,
+        "force": 5.11
     },
     {
         "frame": 45,
-        "speed": 2.91
-    },
-    {
-        "frame": 46,
-        "speed": 2.93
-    },
-    {
-        "frame": 47,
-        "speed": 2.96
-    },
-    {
-        "frame": 48,
-        "speed": 3.1
-    },
-    {
-        "frame": 49,
-        "speed": 3.19
-    },
-    {
-        "frame": 50,
-        "speed": 3.18
-    },
-    {
-        "frame": 51,
-        "speed": 3.18
-    },
-    {
-        "frame": 52,
-        "speed": 3.09
-    },
-    {
-        "frame": 53,
-        "speed": 3.07
-    },
-    {
-        "frame": 54,
-        "speed": 3.0
-    },
-    {
-        "frame": 55,
-        "speed": 2.89
-    },
-    {
-        "frame": 56,
-        "speed": 2.82
-    },
-    {
-        "frame": 57,
-        "speed": 2.81
-    },
-    {
-        "frame": 58,
-        "speed": 2.85
-    },
-    {
-        "frame": 59,
-        "speed": 3.0
+        "speed": 0.78,
+        "acceleration": -1.58,
+        "force": 0
     },
     {
         "frame": 60,
-        "speed": 3.17
-    },
-    {
-        "frame": 61,
-        "speed": 3.23
-    },
-    {
-        "frame": 62,
-        "speed": 3.22
-    },
-    {
-        "frame": 63,
-        "speed": 3.01
-    },
-    {
-        "frame": 64,
-        "speed": 2.73
-    },
-    {
-        "frame": 65,
-        "speed": 2.61
-    },
-    {
-        "frame": 66,
-        "speed": 3.13
-    },
-    {
-        "frame": 67,
-        "speed": 3.22
-    },
-    {
-        "frame": 68,
-        "speed": 3.08
-    },
-    {
-        "frame": 69,
-        "speed": 3.0
-    },
-    {
-        "frame": 70,
-        "speed": 3.15
-    },
-    {
-        "frame": 71,
-        "speed": 3.17
-    },
-    {
-        "frame": 72,
-        "speed": 3.13
-    },
-    {
-        "frame": 73,
-        "speed": 3.07
-    },
-    {
-        "frame": 74,
-        "speed": 3.07
+        "speed": 0.64,
+        "acceleration": -0.28,
+        "force": 0
     },
     {
         "frame": 75,
-        "speed": 3.04
-    },
-    {
-        "frame": 76,
-        "speed": 3.07
-    },
-    {
-        "frame": 77,
-        "speed": 3.03
-    },
-    {
-        "frame": 78,
-        "speed": 2.98
-    },
-    {
-        "frame": 79,
-        "speed": 2.91
-    },
-    {
-        "frame": 80,
-        "speed": 2.82
-    },
-    {
-        "frame": 81,
-        "speed": 2.74
-    },
-    {
-        "frame": 82,
-        "speed": 2.71
-    },
-    {
-        "frame": 83,
-        "speed": 2.66
-    },
-    {
-        "frame": 84,
-        "speed": 2.69
-    },
-    {
-        "frame": 85,
-        "speed": 2.69
-    },
-    {
-        "frame": 86,
-        "speed": 2.68
-    },
-    {
-        "frame": 87,
-        "speed": 2.74
-    },
-    {
-        "frame": 88,
-        "speed": 2.82
-    },
-    {
-        "frame": 89,
-        "speed": 2.82
+        "speed": 0.06,
+        "acceleration": -1.16,
+        "force": 0
     },
     {
         "frame": 90,
-        "speed": 2.85
-    },
-    {
-        "frame": 91,
-        "speed": 2.97
-    },
-    {
-        "frame": 92,
-        "speed": 3.04
-    },
-    {
-        "frame": 93,
-        "speed": 3.07
-    },
-    {
-        "frame": 94,
-        "speed": 3.1
-    },
-    {
-        "frame": 95,
-        "speed": 3.04
-    },
-    {
-        "frame": 96,
-        "speed": 3.0
-    },
-    {
-        "frame": 97,
-        "speed": 3.03
-    },
-    {
-        "frame": 98,
-        "speed": 3.09
-    },
-    {
-        "frame": 99,
-        "speed": 3.06
-    },
-    {
-        "frame": 100,
-        "speed": 3.03
-    },
-    {
-        "frame": 101,
-        "speed": 3.03
-    },
-    {
-        "frame": 102,
-        "speed": 3.03
-    },
-    {
-        "frame": 103,
-        "speed": 3.06
-    },
-    {
-        "frame": 104,
-        "speed": 3.06
+        "speed": 0.0,
+        "acceleration": -0.12,
+        "force": 0
     },
     {
         "frame": 105,
-        "speed": 3.0
-    },
-    {
-        "frame": 106,
-        "speed": 2.88
-    },
-    {
-        "frame": 107,
-        "speed": 2.73
-    },
-    {
-        "frame": 108,
-        "speed": 2.73
-    },
-    {
-        "frame": 109,
-        "speed": 2.79
-    },
-    {
-        "frame": 110,
-        "speed": 2.88
-    },
-    {
-        "frame": 111,
-        "speed": 0.0
-    },
-    {
-        "frame": 112,
-        "speed": 0.0
-    },
-    {
-        "frame": 113,
-        "speed": 0.0
-    },
-    {
-        "frame": 114,
-        "speed": 0.0
-    },
-    {
-        "frame": 115,
-        "speed": 0.0
-    },
-    {
-        "frame": 116,
-        "speed": 0.0
-    },
-    {
-        "frame": 117,
-        "speed": 0.0
-    },
-    {
-        "frame": 118,
-        "speed": 0.0
+        "speed": 0.0,
+        "acceleration": 0.0,
+        "force": 0.0
     },
     {
         "frame": 119,
-        "speed": 0.0
-    },
-    {
-        "frame": 120,
         "speed": 0.0,
-        "acceleration": 0.0
+        "acceleration": 0.0,
+        "force": 0.0
     }
 ]
