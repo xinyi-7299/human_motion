@@ -204,7 +204,8 @@ app.layout = html.Div(
                                     figure=fig
                                 )
                             ]
-                        )
+                        ),
+                        html.Div(id="dummy-output", style={"display": "none"})
                     ]
                 ),
             ]
@@ -419,6 +420,7 @@ app.clientside_callback(
         }
     }
     """,
+    Output("dummy-output", "children"),
     Input("video-player", "id"),
     Input("play-button", "n_clicks"),
     Input("dropdown", "value")
