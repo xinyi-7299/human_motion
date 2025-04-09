@@ -266,7 +266,7 @@ def updateValue(n_intervals, value, data):
     # else:
     #     print(f"value: {value + 1}")
     #     return (value + 1) % 120
-    print(n_intervals)
+    print(f"the data ==>{n_intervals}")
     return n_intervals
 
 
