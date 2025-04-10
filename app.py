@@ -15,12 +15,21 @@ with open('data/bone_1.json', 'r') as file:
     data_p1_1 = file.read()
 with open('data/bone_2.json', 'r') as file:
     data_p2_1 = file.read()
-with open('data/bone_3.json', 'r') as file:
-    data_p3_1 = file.read()
 with open('data/bone_4.json', 'r') as file:
-    data_p4_1 = file.read()
+    data_p3_1 = file.read()
 with open('data/bone_5.json', 'r') as file:
+    data_p4_1 = file.read()
+with open('data/bone_6.json', 'r') as file:
     data_p5_1 = file.read()
+
+
+# # {'label': 'A01', 'value': 0},
+#                                 {'label': 'A02', 'value': 1},
+#                                 {'label': 'A03', 'value': 3},
+#                                 {'label': 'A04', 'value': 2},
+#                                 {'label': 'A05', 'value': 4},
+#                                 {'label': 'A06', 'value': 5},
+
 
 with open('data/data_A01.json', 'r') as file:
     data_A01 = json.load(file)
